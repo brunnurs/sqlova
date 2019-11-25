@@ -12,7 +12,6 @@ import torch.nn as nn
 import torch
 import torch.nn.functional as F
 import random as python_random
-# import torchvision.datasets as dsets
 
 # BERT
 import bert.tokenization as tokenization
@@ -738,18 +737,18 @@ if __name__ == '__main__':
         # 2. download java crsion
         # 3. export CORENLP_HOME=/Users/wonseok/utils/stanford-corenlp-full-2018-10-05
 
-        # from stanza.nlp.corenlp import CoreNLPClient
-        # client = CoreNLPClient(server='http://localhost:9000', default_annotators='ssplit,tokenize'.split(','))
+        from stanza.nlp.corenlp import CoreNLPClient
+        client = CoreNLPClient(server='http://localhost:9000', default_annotators='ssplit,tokenize'.split(','))
 
-        import corenlp
-
-        client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
+        # import corenlp
+        #
+        # client = corenlp.CoreNLPClient(annotators='ssplit,tokenize'.split(','))
 
         nlu1 = "Which company have more than 100 employees?"
         path_db = './data_and_model'
-        db_name = 'ctable'
-        data_table = load_jsonl('./data_and_model/ctable.tables.jsonl')
-        table_name = 'ftable1'
+        db_name = 'dev'
+        data_table = load_jsonl('./data_and_model/dev.tables.jsonl')
+        table_name = 'table_10015132_11' # change table here depending on the questions.
         n_Q = 100000 if args.infer_loop else 1
         for i in range(n_Q):
             if n_Q > 1:
